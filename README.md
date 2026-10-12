@@ -15,7 +15,7 @@ Get the latest APK from [Releases](../../releases). Each release has two builds:
 
 | File | Package | Notes |
 |---|---|---|
-| `WindowsApp-<ver>-side-by-side.apk` | `com.cyyself.windowsapp` | Installs **next to** the official app as "Windows App Fullscreen". |
+| `WindowsApp-<ver>-side-by-side.apk` | `name.cyyself.windowsapp` | Installs **next to** the official app as "Windows App Fullscreen". |
 | `WindowsApp-<ver>-nocutout.apk` | `com.microsoft.rdc.androidx` | Replaces the official app. Uninstall the official app first (this deletes its saved PCs and settings). |
 
 Releases are built automatically by CI from the official Google Play APK. The patcher refuses any input that isn't signed with Microsoft's certificate.
@@ -47,7 +47,7 @@ Requirements: Java 17+, [apktool](https://apktool.org) 3.x (or `APKTOOL_JAR=/pat
 
 ```sh
 ./patch.sh official.apk                  # same package id, replaces the official app
-./patch.sh --side-by-side official.apk   # com.cyyself.windowsapp, installs alongside
+./patch.sh --side-by-side official.apk   # name.cyyself.windowsapp, installs alongside
 ```
 
 The APKs are written to `work/out/`. Install them as described in [Install](#install).
@@ -78,7 +78,7 @@ All edits are in [`scripts/patch_smali.py`](scripts/patch_smali.py). Obfuscated 
 Windows App starts sessions with an implicit intent (`com.microsoft.windowsapp.action.SESSION_START`). Side-by-side builds made before the action-renaming fix declare the same action as the official app. Android therefore offers a chooser, and picking **Always** makes one app keep opening sessions in the other. Install a current side-by-side build, then clear the remembered choice:
 
 ```sh
-adb shell cmd package clear-package-preferred-activities com.cyyself.windowsapp
+adb shell cmd package clear-package-preferred-activities name.cyyself.windowsapp
 adb shell cmd package clear-package-preferred-activities com.microsoft.rdc.androidx
 ```
 

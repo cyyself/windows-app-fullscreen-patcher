@@ -133,7 +133,7 @@ jobs:
 
           | File | Package | Installs |
           |---|---|---|
-          | \`WindowsApp-$VERSION-side-by-side.apk\` | \`com.cyyself.windowsapp\` | next to the official app, as "Windows App Fullscreen" |
+          | \`WindowsApp-$VERSION-side-by-side.apk\` | \`name.cyyself.windowsapp\` | next to the official app, as "Windows App Fullscreen" |
           | \`WindowsApp-$VERSION-nocutout.apk\` | \`com.microsoft.rdc.androidx\` | in place of the official app (uninstall it first) |
 
           Not affiliated with Microsoft. Work/school account sign-in may not work because the APK is re-signed.

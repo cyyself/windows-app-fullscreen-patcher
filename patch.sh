@@ -4,7 +4,7 @@
 #
 # Usage: ./patch.sh [--side-by-side] <official.apk> [output.apk]
 #
-# --side-by-side  install beside the official app: application id com.cyyself.windowsapp
+# --side-by-side  install beside the official app: application id name.cyyself.windowsapp
 #                 and label "Windows App Fullscreen" (override with PACKAGE_ID / APP_LABEL)
 #
 # Signing (defaults create/reuse work/patch.keystore):
@@ -18,7 +18,7 @@ PKG=com.microsoft.rdc.androidx
 MS_CERT_SHA256=802477238a2158846843af80d7fc823d366caa3d0f26f96da4f8e22e85f1d2f5
 
 if [ "${1:-}" = --side-by-side ]; then
-  PACKAGE_ID=${PACKAGE_ID:-com.cyyself.windowsapp}
+  PACKAGE_ID=${PACKAGE_ID:-name.cyyself.windowsapp}
   APP_LABEL=${APP_LABEL:-Windows App Fullscreen}
   shift
 fi
