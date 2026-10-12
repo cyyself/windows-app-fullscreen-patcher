@@ -20,6 +20,21 @@ Get the latest APK from [Releases](../../releases). Each release has two builds:
 
 Releases are built automatically by CI from the official Google Play APK. The patcher refuses any input that isn't signed with Microsoft's certificate.
 
+### Install
+
+Open the APK on the phone to install it, or install it from a computer with adb:
+
+```sh
+# Side-by-side build: installs next to the official app
+adb install -r --user 0 WindowsApp-<ver>-side-by-side.apk
+
+# Replacement build: remove the official app first (deletes its saved PCs and settings)
+adb uninstall com.microsoft.rdc.androidx
+adb install -r --user 0 WindowsApp-<ver>-nocutout.apk
+```
+
+Use `--user 0` so adb installs only into your main profile; see [Troubleshooting](#troubleshooting) for why. To update, install a newer release the same way. Releases share one signing key, so they install over each other and keep your data.
+
 ### Limitations
 
 - The APK is re-signed, so **Play Store updates won't apply**. Install newer releases from this repo instead (they share one signing key, so they install over each other and keep your data).
@@ -33,10 +48,9 @@ Requirements: Java 17+, [apktool](https://apktool.org) 3.x (or `APKTOOL_JAR=/pat
 ```sh
 ./patch.sh official.apk                  # same package id, replaces the official app
 ./patch.sh --side-by-side official.apk   # com.cyyself.windowsapp, installs alongside
-adb install -r --user 0 work/out/WindowsApp-*-side-by-side.apk
 ```
 
-Use `--user 0` so adb installs only into your main profile; see [Troubleshooting](#troubleshooting) for why.
+The APKs are written to `work/out/`. Install them as described in [Install](#install).
 
 To get `official.apk`, pull it from a phone that has the official app installed:
 

@@ -68,5 +68,3 @@ export KEYSTORE_PASS KEY_PASS
   --out "$OUT" $W/out/aligned.apk
 rm -f $W/out/unsigned.apk $W/out/aligned.apk "$OUT.idsig"
 echo "Built $OUT"
-if [ -n "${PACKAGE_ID:-}" ]; then echo "Install: adb install -r --user 0 $OUT   (installs beside the official app)"
-else echo "Install: adb install -r --user 0 $OUT   (first time: uninstall the official app)"; fi
